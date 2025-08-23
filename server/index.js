@@ -24,13 +24,19 @@ admin.initializeApp({
 });
 
 const app = express();
-app.use(cors({ origin: ["http://localhost:5173"], credentials: true }));
+
+const allowedOrigins = [
+  "http://localhost:5173", 
+  "https://groupcart-41b08.web.app/",
+  "https://groupcart-41b08.firebaseapp.com"
+];
+
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 const server = http.createServer(app);
-const io = new Server(server, {
-  cors: { origin: ["http://localhost:5173"], methods: ["GET", "POST"] }
-});
+
+const io = new Server(server, { cors: { origin: allowedOrigins, methods: ["GET", "POST"] }});
 
 // Simple health check
 app.get("/health", (_req, res) => res.json({ ok: true }));
