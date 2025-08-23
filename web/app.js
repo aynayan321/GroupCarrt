@@ -28,6 +28,12 @@ writeBatch,
 limit
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-firestore.js";
 
+import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
+
+const socket = io("https://group-cart.onrender.com", {
+  withCredentials: true
+});
+
 // --- Firebase Config ---
 const firebaseConfig = {
   apiKey: "AIzaSyDdM2cWaRqRdiJ085nyCDSy6P2lZDQ8f1M",
