@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>GroupCart</title>
+  <link rel="icon" href="/assets/logo.svg" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="left" id="homeBtn" style="cursor: pointer;">
+      <img src="/assets/logo.svg" alt="logo" class="logo"/>
+      <span class="brand">GroupCart</span>
+    </div>    
+
+    <div class="right">
+      <button id="createPoolBtn">Create Pool</button>
+      <button id="allPoolBtn">All Pool</button>
+      <button id="joinedPoolBtn">Joined Pool</button>
+      <button id="myRequestsBtn">My Requests</button>
+      <button id="profileBtn">Login</button>
+    </div>
+  </nav>
+
+  <!-- Popup for Creating Pool -->
+  <div id="createPopup" class="popup hidden">
+    <h3>Create Pool</h3>
+    <input type="text" id="platform" placeholder="Platform Name" />
+    <input type="number" id="participantLimit" placeholder="Participant Limit" />
+    <input type="number" id="threshold" placeholder="Threshold (₹)" />
+    <input type="number" id="timeLimit" placeholder="Time Limit (min)" />
+    <textarea id="description" placeholder="Description"></textarea>
+    <button id="submitPool">Submit Pool</button>
+    <button id="closeCreatePopup">Cancel</button>
+  </div>
+
+  <!-- HOME Section -->
+  <main id="homeSection">
+    <h2>Available Pools</h2>
+    <div id="poolsContainer"></div>
+  </main>
+
+  <!-- JOINED Section (Hidden by default) -->
+  <main id="joinedSection" class="hidden">
+    <h2>Joined Pools</h2>
+    <div id="joinedContainer"></div>
+  </main>
+
+  <!-- MY REQUESTS Section (Hidden by default) -->
+  <main id="myRequestsSection" class="hidden">
+    <h2>My Requests</h2>
+    <div id="myRequestsContainer"></div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
