@@ -17,10 +17,10 @@ const {
 // Initialize Firebase Admin (for later auth verification / Firestore server ops)
 admin.initializeApp({
   credential: admin.credential.cert({
-    projectId: FIREBASE_PROJECT_ID,
-    clientEmail: FIREBASE_CLIENT_EMAIL,
-    privateKey: FIREBASE_PRIVATE_KEY?.replace(/\\n/g, "\n")
-  })
+    projectId: process.env.FIREBASE_PROJECT_ID,
+    clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+    privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  }),
 });
 
 const app = express();
@@ -28,7 +28,8 @@ const app = express();
 const allowedOrigins = [
   "http://localhost:5173", 
   "https://groupcart-41b08.web.app/",
-  "https://groupcart-41b08.firebaseapp.com"
+  "https://groupcart-41b08.firebaseapp.com",
+  "https://group-cart-2.onrender.com"
 ];
 
 app.use(cors({ origin: allowedOrigins, credentials: true }));
