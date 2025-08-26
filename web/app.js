@@ -31,7 +31,7 @@ limit
 
 import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 
-const socket = io("http://localhost:3000", {
+const socket = io("https://group-cart-1.onrender.com", {
   withCredentials: true
 });
 

@@ -28,9 +28,11 @@ const app = express();
 
 const allowedOrigins = [
   "http://localhost:5173",
+  "https://group-cart-2.onrender.com", 
   "https://groupcart-41b08.web.app",
   "https://groupcart-41b08.firebaseapp.com"
 ];
+
 
 
 app.use(
