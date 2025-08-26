@@ -4,6 +4,7 @@ import {
 getAuth,
 GoogleAuthProvider,
 signInWithRedirect,
+signInWithPopup,
 signOut,
 onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
@@ -30,7 +31,7 @@ limit
 
 import { io } from "https://cdn.socket.io/4.8.1/socket.io.esm.min.js";
 
-const socket = io("https://group-cart-1.onrender.com", {
+const socket = io("http://localhost:3000", {
   withCredentials: true
 });
 
@@ -150,7 +151,8 @@ profileBtn.addEventListener("click", async () => {
   if (currentUser) showProfilePopup();
   else {
     try {
-      await signInWithRedirect(auth, provider);
+      // ✅ localhost-only dev uses popup; no redirect needed
+      await signInWithPopup(auth, provider);
     } catch (err) { console.error("Login error", err); }
   }
 });
@@ -680,7 +682,7 @@ async function deletePool(poolId) {
 }
 
 // --- Section Switching ---
-document.getElementById("allPoolBtn").addEventListener("click", () => showSection("homeSection"));
+document.getElementById("allPoolBtn").addEventListener("click", () => showSection("home"));
 document.getElementById("joinedPoolBtn").addEventListener("click", () => showSection("joined"));
 document.getElementById("myRequestsBtn").addEventListener("click", () => showSection("myRequests"));
 
@@ -693,3 +695,7 @@ function showSection(section) {
   else if (section==="myRequests") myRequestsSection.classList.remove("hidden");
   else homeSection.classList.remove("hidden");
 } 
+
+// --- (optional) socket logs so you know it's good
+socket.on("connect", () => console.log("🔌 Socket connected:", socket.id));
+socket.on("disconnect", () => console.log("❌ Socket disconnected"));
