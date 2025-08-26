@@ -3,7 +3,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/11.0.0/firebas
 import {
 getAuth,
 GoogleAuthProvider,
-signInWithPopup,
+signInWithRedirect,
 signOut,
 onAuthStateChanged
 } from "https://www.gstatic.com/firebasejs/11.0.0/firebase-auth.js";
@@ -150,7 +150,7 @@ profileBtn.addEventListener("click", async () => {
   if (currentUser) showProfilePopup();
   else {
     try {
-      await signInWithPopup(auth, provider);
+      await signInWithRedirect(auth, provider);
     } catch (err) { console.error("Login error", err); }
   }
 });
@@ -692,4 +692,4 @@ function showSection(section) {
   if (section==="joined") joinedSection.classList.remove("hidden");
   else if (section==="myRequests") myRequestsSection.classList.remove("hidden");
   else homeSection.classList.remove("hidden");
-}
+} 
