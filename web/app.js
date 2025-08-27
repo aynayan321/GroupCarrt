@@ -39,7 +39,7 @@ const socket = io("https://group-cart-1.onrender.com", {
 // --- Firebase Config ---
 const firebaseConfig = {
   apiKey: "AIzaSyDdM2cWaRqRdiJ085nyCDSy6P2lZDQ8f1M",
-  authDomain: "groupcart-3c788.firebaseapp.com",
+  authDomain: "group-cart-2.onrender.com",
   projectId: "groupcart-3c788",
   appId: "1:675386399587:web:f7858cd2e84a91dc135156"
 };
