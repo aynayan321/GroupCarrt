@@ -169,18 +169,12 @@ document.addEventListener("DOMContentLoaded", () => {
 // Login / Profile button behavior
 if (profileBtn) {
   profileBtn.addEventListener("click", async () => {
-    if (currentUser) showProfilePopup();
-    else {
+    if (currentUser) {
+      showProfilePopup();
+    } else {
       try {
-        // Popup for localhost, Redirect for production
-        if (
-          window.location.hostname.includes("localhost") ||
-          window.location.hostname.includes("127.0.0.1")
-        ) {
-          await signInWithPopup(auth, provider);
-        } else {
-          await signInWithRedirect(auth, provider);
-        }
+        // ✅ Always use popup (works on localhost & Render)
+        await signInWithPopup(auth, provider);
       } catch (err) {
         console.error("Login error", err);
         notify("Login failed. Check console for details.", "error");
@@ -188,6 +182,7 @@ if (profileBtn) {
     }
   });
 }
+
 
 async function logout() {
   // Clear pools listener if it exists
