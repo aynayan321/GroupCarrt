@@ -46,6 +46,78 @@ With instant synchronization powered by Socket.IO and secure user management thr
 - Cross-platform compatibility
 - Secure data transmission
 
+## Database Schema
+
+### Firebase Collections
+
+#### Users Collection
+```javascript
+users: {
+  userId: {
+    displayName: string,
+    email: string,
+    photoURL?: string,
+    createdAt: timestamp,
+    lastActive: timestamp
+  }
+}
+```
+
+#### Shopping Lists Collection
+```javascript
+lists: {
+  listId: {
+    name: string,
+    description?: string,
+    createdBy: userId,
+    createdAt: timestamp,
+    updatedAt: timestamp,
+    members: {
+      userId: {
+        role: 'owner' | 'editor' | 'viewer',
+        joinedAt: timestamp
+      }
+    }
+  }
+}
+```
+
+#### List Items Collection
+```javascript
+items: {
+  itemId: {
+    listId: string,
+    name: string,
+    quantity: number,
+    unit?: string,
+    category?: string,
+    notes?: string,
+    addedBy: userId,
+    addedAt: timestamp,
+    completed: boolean,
+    completedBy?: userId,
+    completedAt?: timestamp
+  }
+}
+```
+
+#### Activity Logs Collection
+```javascript
+activity: {
+  logId: {
+    listId: string,
+    userId: string,
+    action: 'create' | 'update' | 'delete' | 'complete',
+    itemId?: string,
+    timestamp: timestamp,
+    details: {
+      previousValue?: any,
+      newValue?: any
+    }
+  }
+}
+```
+
 ## Project Structure
 
 ```
@@ -115,6 +187,7 @@ Group-Cart/
    firebase init
    ```
    Select the following options:
+   - Choose "Hosting" when prompted for features
    - Select your newly created project
    - Use "web" as your public directory
    - Configure as a single-page app: Yes
