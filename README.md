@@ -1,15 +1,50 @@
 
 # Group-Cart
 
-Group-Cart is a collaborative shopping cart application that allows users to create and manage shared shopping lists in real-time.
+<div align="center">
+  <img src="web/assets/logo.svg" alt="Group-Cart Logo" width="200" height="200">
+  <h3>Shop Together, Save Together</h3>
+</div>
 
-## Features
+Group-Cart is a real-time collaborative shopping list application that transforms the way people shop together. Whether you're planning groceries with roommates, organizing a family gathering, or coordinating supplies for an event, Group-Cart makes it easy to create, share, and manage shopping lists in real-time.
 
-- Real-time collaborative shopping lists
-- Firebase integration for data storage and authentication
-- Web-based user interface
-- WebSocket support for live updates
-- Express.js backend server
+With instant synchronization powered by Socket.IO and secure user management through Firebase Authentication, multiple users can simultaneously view and edit shopping lists, see live updates, and track shopping progress together.
+
+## Key Features
+
+### Real-time Collaboration
+- Live updates when items are added, modified, or removed
+- See who's currently viewing or editing the list
+- Multiple users can work on the same list simultaneously
+- Instant sync across all connected devices
+
+### User Management
+- Secure authentication with Firebase
+- Personal user profiles
+- Share lists with specific users
+- Control access permissions for each list
+
+### Shopping List Management
+- Create multiple shopping lists
+- Add, edit, and remove items in real-time
+- Mark items as purchased
+- Add quantities and notes to items
+- Organize items by categories
+- Track shopping progress
+
+### User Interface
+- Clean and intuitive web interface
+- Mobile-responsive design
+- Easy-to-use controls
+- Real-time status indicators
+- Search and filter capabilities
+
+### Technical Features
+- WebSocket-based real-time updates
+- Firebase integration for authentication and data storage
+- Express.js backend for robust API handling
+- Cross-platform compatibility
+- Secure data transmission
 
 ## Project Structure
 
@@ -30,18 +65,31 @@ Group-Cart/
 ## Technologies Used
 
 ### Backend
-- Node.js
-- Express.js
-- Socket.IO
-- Firebase Admin SDK
-- CORS
-- UUID
+<p align="left">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" alt="nodejs" width="40" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original.svg" alt="express" width="40" height="40"/>
+  <img src="https://socket.io/images/logo.svg" alt="socket.io" width="40" height="40"/>
+  <img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" alt="firebase" width="40" height="40"/>
+</p>
+
+- Node.js - Server runtime environment
+- Express.js - Web application framework
+- Socket.IO - Real-time bidirectional event-based communication
+- Firebase Admin SDK - Backend authentication and database management
+- CORS - Cross-Origin Resource Sharing support
+- UUID - Unique identifier generation
 
 ### Frontend
-- HTML5
-- CSS3
-- JavaScript
-- HTTP Server (for development)
+<p align="left">
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" alt="html5" width="40" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" alt="css3" width="40" height="40"/>
+  <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/>
+</p>
+
+- HTML5 - Structure and semantic markup
+- CSS3 - Styling and responsive design
+- JavaScript - Client-side functionality
+- HTTP Server - Local development server
 
 ## Getting Started
 
@@ -67,7 +115,6 @@ Group-Cart/
    firebase init
    ```
    Select the following options:
-   - Choose "Hosting" when prompted for features
    - Select your newly created project
    - Use "web" as your public directory
    - Configure as a single-page app: Yes
