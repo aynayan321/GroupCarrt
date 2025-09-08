@@ -125,18 +125,111 @@ The web application will be available at `http://localhost:5173`
 
 ### Deployment
 
-To deploy the application to Firebase Hosting:
+#### Frontend (Render Static Site)
 
-```bash
-# Build the application (if needed)
-cd web
-npm run build  # if you have a build script
+To deploy the frontend on Render as a Static Site:
 
-# Deploy to Firebase
-firebase deploy
-```
+1. From your Render dashboard:
+   - Click "New +"
+   - Select "Static Site"
+   - Connect your GitHub repository
+   - Select the Group-Cart repository
 
-The application will be available at `https://[YOUR-PROJECT-ID].web.app`
+2. Configure the Static Site:
+   - Name: `group-cart` (or your preferred name)
+   - Root Directory: `web`
+   - Build Command: empty
+   - Publish Directory: `.` (if you have a build script, use your build output directory)
+   - Select branch to deploy (e.g., `main`)
+
+3. Click "Create Static Site"
+
+Your frontend will be available at `https://your-site-name.onrender.com`
+
+#### Backend (Render Web Service)
+
+To deploy the backend server on Render:
+
+1. From your Render dashboard:
+   - Click "New +"
+   - Select "Web Service"
+   - Connect your GitHub repository (if not already done)
+   - Select the Group-Cart repository
+
+2. Configure the Web Service:
+   - Name: `group-cart-api` (or your preferred name)
+   - Root Directory: `server`
+   - Environment: `Node`
+   - Build Command: `npm install`
+   - Start Command: `npm start`
+   - Select the appropriate instance type (Free tier is available)
+
+3. Add Environment Variables:
+   - Click on "Environment"
+   - Add the following variables:
+     ```
+     FIREBASE_PROJECT_ID=your-project-id
+     FIREBASE_PRIVATE_KEY=your-private-key
+     FIREBASE_CLIENT_EMAIL=your-client-email
+     ```
+   - Add any other environment variables your application needs
+
+4. Click "Create Web Service"
+
+Your backend API will be available at `https://your-api-name.onrender.com`
+
+#### Connecting Frontend to Backend
+
+After both services are deployed:
+
+1. Update your frontend Socket.IO client configuration:
+   ```javascript
+   // --- Socket.io Client ---
+   const socket = io("https://your-api-name.onrender.com", {
+     withCredentials: true
+   });
+   ```
+
+2. Update your backend CORS and allowed origins configuration in `server/index.js`:
+   ```javascript
+   const allowedOrigins = [
+     "http://localhost:5173",
+     "https://your-frontend-site-name.onrender.com",   // ✅ your frontend
+     "https://groupcart-41b08.web.app",
+     "https://groupcart-41b08.firebaseapp.com"
+   ];
+
+   app.use(
+     cors({
+       origin: (origin, callback) => {
+         // allow non-browser clients or same-origin
+         if (!origin || allowedOrigins.includes(origin)) {
+           callback(null, true);
+         } else {
+           callback(new Error("CORS blocked for origin: " + origin));
+         }
+       },
+       credentials: true,
+     })
+   );
+   ```
+
+3. Make sure your Socket.IO server is configured with the same CORS settings:
+   ```javascript
+   const io = new Server(server, {
+     cors: {
+       origin: allowedOrigins,
+       methods: ["GET", "POST"],
+       credentials: true,
+     },
+   });
+   ```
+
+Remember to:
+- Replace `your-api-name.onrender.com` with your actual backend URL
+- Replace `your-frontend-site-name.onrender.com` with your actual frontend URL
+- Rebuild and redeploy your services after making these changes
+- Ensure both `withCredentials` and CORS settings match to enable successful Socket.IO connections
 
 ## License
 
