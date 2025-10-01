@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 # Group-Cart
 
@@ -362,3 +363,7 @@ This project is licensed under the ISC License.
  #   G r o u p C a r r t  
  #   G r o u p C a r r t  
  
+=======
+# Group-Cart
+# Group-Cart
+>>>>>>> 4eca2bc (first commit)
